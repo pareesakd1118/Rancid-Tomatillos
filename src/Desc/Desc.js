@@ -25,12 +25,12 @@ function Desc({ movie , displayHomePage}) {
         ></div>
         <div className = "movieDesc" style = {{backgroundImage: `url(${movie.backdrop_path})`}}>
             <h2>{movie.title}</h2>
-            <h3>Release Date: {movie.release_date}</h3>
-            <p>{movie.overview}</p>
-            <p>Runtime: {movie.runtime} Minutes</p>
             <p>{movie.tagline}</p>
+            <h3>Release Date: {movie.release_date}</h3>
+            <p>Overview: {movie.overview}</p>
+            <p>Runtime: {movie.runtime} Minutes</p>
             <p>Rating: {movie.average_rating}/10</p>
-            <button onClick={displayHomePage}>Back</button>
+            <button className = "backButton" onClick={displayHomePage}>Back</button>
 
         </div>
     </div>

@@ -3,7 +3,9 @@
     width: 900px;
     height: 500px;
     box-sizing: border-box;
-    border: 3px solid black;    
+    border: 3px solid #000000; 
+    color: white; 
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .movieDescDisplay{
     height: 700pX;
@@ -13,8 +15,21 @@
 }
 .displayedMovie{
     width: 400px;
-    height: 600px;
+    height: 590px;
     box-sizing: border-box;
     border: 3px solid black;
     background-size: 100%;
+}
+.backButton {
+    background-color: #6D5593;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    width: 100px;
+    top:27%;
+    left:90%;
 }
