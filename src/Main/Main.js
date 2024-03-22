@@ -9,6 +9,7 @@ function Main({movieData}) {
                     id={movie.id}
                     image={movie.poster_path}
                     rating={movie.average_rating}
+                    key={movie.id}
                     />
         })
     }

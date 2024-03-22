@@ -1,14 +1,14 @@
 import "./Movie.css"
 
-function Movie({ title, rating, id, image}) {
+function Movie({ title, id, image}) {
 
     return (
-        <div id={id}>
-            <h2>{title}</h2>
-            <img src={image} alt={`image of ${title} movie poster`}/>
-            <p>{rating}</p>
+        <div title={title} className="movie" style={{ backgroundImage: `url(${image})` }} id={id}>
         </div>
     )
 }
 
 export default Movie;
+
+// style={{marginRight: spacing + 'em'}} when using JSX.
+   // <img src={image} alt={`image of ${title} movie poster`}/> */
