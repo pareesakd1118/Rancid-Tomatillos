@@ -16,24 +16,24 @@ function Desc({ movie , displayHomePage}) {
 
   return (
     <main>
-        <React.Fragment className = "movieDescDisplay">
+        <div className = "movieDescDisplay">
         <div
           title={movie.title}
-          className="movie"
+          className="displayedMovie"
           style={{ backgroundImage: `url(${movie.poster_path})` }}
           id={movie.id}
         ></div>
         <div className = "movieDesc" style = {{backgroundImage: `url(${movie.backdrop_path})`}}>
             <h2>{movie.title}</h2>
-            <h3>Release Date{movie.release_date}</h3>
+            <h3>Release Date: {movie.release_date}</h3>
             <p>{movie.overview}</p>
-            <p>Runtime{movie.runtime}</p>
+            <p>Runtime: {movie.runtime} Minutes</p>
             <p>{movie.tagline}</p>
-            <p>{movie.average_rating}</p>
+            <p>Rating: {movie.average_rating}/10</p>
             <button onClick={displayHomePage}>Back</button>
 
         </div>
-        </React.Fragment>
+    </div>
     </main>
   );
 }
