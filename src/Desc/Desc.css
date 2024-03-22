@@ -1,0 +1,6 @@
+.movieDesc {
+    width: 100%;
+}
+.movieDescDisplay{
+    display: flex;
+}

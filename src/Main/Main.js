@@ -17,7 +17,9 @@ function Main({movieData , showDesc}) {
 
     return (
         <main>
+            <div className="displayedMovies">
             {displayMovies()}
+            </div>
         </main>
     )
 }
