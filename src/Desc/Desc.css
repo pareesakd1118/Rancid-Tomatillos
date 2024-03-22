@@ -1,17 +1,20 @@
 .movieDesc {
-    width: 100%;
-
+    background-size: 100%;
+    width: 900px;
+    height: 500px;
+    box-sizing: border-box;
+    border: 3px solid black;    
 }
 .movieDescDisplay{
+    height: 700pX;
     display: flex;
-   
+   align-items: center;
     justify-content: space-around;
 }
 .displayedMovie{
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 600px;
     box-sizing: border-box;
     border: 3px solid black;
-    padding: 10px;
     background-size: 100%;
 }
