@@ -43,6 +43,11 @@ function App() {
     getSingleMovie(evt.target.id);
     setIsMovieSelected(true);
   }
+
+  function displayHomePage() {
+    setIsMovieSelected(false)
+    setSelectedMovie({})
+  }
   
   return (
     <React.Fragment>
@@ -51,7 +56,7 @@ function App() {
         {!isMovieSelected ? (
           <Main showDesc={showDesc} movieData={movies} />
         ) : (
-          <Desc movie={selectedMovie} />
+          <Desc movie={selectedMovie} displayHomePage={displayHomePage}/>
         )}
       </React.Fragment>
     </React.Fragment>
