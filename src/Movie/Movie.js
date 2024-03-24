@@ -1,9 +1,8 @@
 import "./Movie.css"
 
-function Movie({ title, id, image}) {
-
+function Movie({ title, id, image, showDesc}) {
     return (
-        <div title={title} className="movie" style={{ backgroundImage: `url(${image})` }} id={id}>
+        <div title={title} className="movie" onClick = {evt => showDesc(evt)} style={{ backgroundImage: `url(${image})` }} id={id}>
         </div>
     )
 }
