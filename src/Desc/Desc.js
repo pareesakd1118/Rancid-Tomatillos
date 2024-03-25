@@ -5,7 +5,6 @@ import React from "react";
 function Desc({ movie , displayHomePage}) {
 
   return (
-    <main>
         <div className = "movieDescDisplay">
         <div
           title={movie.title}
@@ -24,7 +23,6 @@ function Desc({ movie , displayHomePage}) {
 
         </div>
     </div>
-    </main>
   );
 }
 

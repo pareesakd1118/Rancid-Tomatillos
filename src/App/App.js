@@ -9,8 +9,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isMovieSelected, setIsMovieSelected] = useState(false);
-  const [isError, setIsError] = useState(false)
-  const [responseLevel, setResponseLevel] = useState(undefined)
+  const [responseLevel, setResponseLevel] = useState(null)
   
   function getMovies() {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
@@ -53,25 +52,24 @@ function App() {
   }
 
   function displayError(responseLevel) {
-    setIsError(true)
     setResponseLevel(responseLevel)
   }
   
   return (
-    <React.Fragment>
-      {isError ? (<p className="error">ERROR: {responseLevel} </p>) : (
-        <React.Fragment>
+    <>
+      {responseLevel ? (<p className="error">ERROR: {responseLevel} Restart Server</p>) : (
+        <body>
           <Nav />
-          <React.Fragment>
+          <main>
           {!isMovieSelected ? (
             <Main showDesc={showDesc} movieData={movies} />
             ) : (
             <Desc movie={selectedMovie} displayHomePage={displayHomePage}/>
           )}
-          </React.Fragment>
-        </React.Fragment>
+          </main>
+        </body>
       )}
-    </React.Fragment>
+    </>
   );
 }
 
