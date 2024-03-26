@@ -58,7 +58,7 @@ function App() {
   return (
     <>
       {responseLevel ? (<p className="error">ERROR: {responseLevel} Restart Server</p>) : (
-        <body>
+        <div>
           <Nav />
           <main>
           {!isMovieSelected ? (
@@ -67,7 +67,7 @@ function App() {
             <Desc movie={selectedMovie} displayHomePage={displayHomePage}/>
           )}
           </main>
-        </body>
+        </div>
       )}
     </>
   );
