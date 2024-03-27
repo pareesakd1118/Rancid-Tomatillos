@@ -1,26 +1,46 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from 'react-router-dom';
 import "./Desc.css";
-import React from "react";
 
-function Desc({ movie , displayHomePage}) {
+function Desc({ displayError}) {
+  const [selectedMovie, setSelectedMovie] = useState({});
+  let movieID = useParams().id
+  
+  function getSingleMovie() {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}`)
+    .then((res) => {
+      if (!res.ok) {
+        displayError(400);
+      } else {
+        return res.json();
+      } 
+    })
+    .then((data) => setSelectedMovie(data.movie))
+    .catch(err => displayError(500))
+  }
+  
+  useEffect(() => {
+    getSingleMovie();
+    console.log("movieId",movieID)
+    console.log("selectedMovie",selectedMovie)
+  }, []);
 
   return (
         <div className = "movieDescDisplay">
         <div
-          title={movie.title}
+          title={selectedMovie.title}
           className="displayedMovie"
-          style={{ backgroundImage: `url(${movie.poster_path})` }}
-          id={movie.id}
+          style={{ backgroundImage: `url(${selectedMovie.poster_path})` }}
+          id={selectedMovie.id}
         ></div>
-        <div className = "movieDesc" style = {{backgroundImage: `url(${movie.backdrop_path})`}}>
-            <h2>{movie.title}</h2>
-            <p>{movie.tagline}</p>
-            <h3>Release Date: {movie.release_date}</h3>
-            <p>Overview: {movie.overview}</p>
-            <p>Runtime: {movie.runtime} Minutes</p>
-            <p>Rating: {movie.average_rating}/10</p>
-            <button className = "backButton" onClick={displayHomePage}>Back</button>
-
+        <div className = "movieDesc" style = {{backgroundImage: `url(${selectedMovie.backdrop_path})`}}>
+          <h2>{selectedMovie.title}</h2>
+          <p>{selectedMovie.tagline}</p>
+          <h3>Release Date: {selectedMovie.release_date}</h3>
+          <p>Overview: {selectedMovie.overview}</p>
+          <p>Runtime: {selectedMovie.runtime} Minutes</p>
+          <p>Rating: {selectedMovie.average_rating}/10</p>
+          <Link to = "/"> <button className = "backButton">Back</button></Link>
         </div>
     </div>
   );

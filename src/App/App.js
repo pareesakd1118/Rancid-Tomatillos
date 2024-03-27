@@ -4,7 +4,7 @@ import Main from "../Main/Main";
 import { useState, useEffect } from "react";
 import React from "react";
 import Desc from "../Desc/Desc";
-
+import { Routes, Route,} from "react-router-dom"
 function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState({});
@@ -60,13 +60,10 @@ function App() {
       {responseLevel ? (<p className="error">ERROR: {responseLevel} Restart Server</p>) : (
         <div>
           <Nav />
-          <main>
-          {!isMovieSelected ? (
-            <Main showDesc={showDesc} movieData={movies} />
-            ) : (
-            <Desc movie={selectedMovie} displayHomePage={displayHomePage}/>
-          )}
-          </main>
+          <Routes>
+            <Route path="/" element={<Main showDesc={showDesc} movieData={movies} />}/>
+            <Route path="/:id" element={<Desc displayError={displayError}/>} />
+          </Routes>
         </div>
       )}
     </>
