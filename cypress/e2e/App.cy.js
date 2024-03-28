@@ -28,6 +28,7 @@ describe("The user can use the site properly ", () => {
       },
     }).visit("http://localhost:3000/");
   });
+
   it("displays movies on the main page", () => {
     cy.get(".movie").should("have.length.greaterThan", 0);
   });
@@ -109,4 +110,17 @@ describe("The user can use the site properly ", () => {
     cy.visit("http://localhost:3000/");
     cy.get(".error").should("be.visible");
   });
+
+  it("displays an error message if fetching single movie description fails", () => {
+    cy.get(".movie").first().click();
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270",
+      {
+        statusCode: 500,
+        body: {}
+      }
+    )
+    cy.get(".error").should("be.visible")
+  })
 });
