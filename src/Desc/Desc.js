@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link,useNavigate } from 'react-router-dom';
 import "./Desc.css";
 
-function Desc({ displayError}) {
+function Desc() {
   const [selectedMovie, setSelectedMovie] = useState({});
   let movieID = useParams().id
-  
+  const navigate = useNavigate();
   function getSingleMovie() {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}`)
     .then((res) => {
       if (!res.ok) {
-        displayError(400);
+        navigate("/error/400")
       } else {
         return res.json();
       } 
     })
     .then((data) => setSelectedMovie(data.movie))
-    .catch(err => displayError(500))
+    .catch(err =>  navigate("/error/400"));
   }
   
   useEffect(() => {
