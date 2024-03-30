@@ -34,8 +34,6 @@ describe("The user can use the site properly ", () => {
   });
 
   it("shows movie details when a movie is clicked", () => {
-   //whats this do 
-  
     cy.get(".movie").first().click();
     cy.intercept(
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270",
@@ -165,5 +163,17 @@ describe("The user can use the site properly ", () => {
       }
     )
     cy.get(".error").should("be.visible")
+  })
+  it("searches for results based on input", () => {
+    cy.get("input").type("black")
+    cy.get("#436270").should("be.visible");
+    cy.url().should("include","black")
+  })
+  it("Should return you home if you click on the title", () => {
+    cy.get("input").type("black")
+    cy.get("#436270").should("be.visible");
+    cy.url().should("include","black")
+    cy.get("h1").click()
+    cy.get(".movie").should("have.length.greaterThan", 1)
   })
 });
