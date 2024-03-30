@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, } from "react-router-dom";
 import "./Desc.css";
 
 function Desc() {
   const [selectedMovie, setSelectedMovie] = useState({});
   let movieID = useParams().id;
   const navigate = useNavigate();
-
   function getSingleMovie() {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}`)
       .then((res) => {
@@ -42,13 +41,11 @@ function Desc() {
         <p>Overview: {selectedMovie.overview}</p>
         <p>Runtime: {selectedMovie.runtime} Minutes</p>
         <p>Rating: {selectedMovie.average_rating}/10</p>
-        <Link to="/">
-          <button className="backButton">Back</button>
-        </Link>
+        <button className="backButton" onClick={() => navigate(-1)}> Back </button>
       </div>
     </div>
   );
 }
 
-//ask what we do in this case 
+//ask what we do in this case
 export default Desc;
