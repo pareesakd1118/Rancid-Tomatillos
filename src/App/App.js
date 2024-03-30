@@ -9,6 +9,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [search, setSearchResults] = useState([]);
   const navigate = useNavigate();
 
   function getMovies() {
@@ -24,6 +25,26 @@ function App() {
       .catch((err) => navigate("/error/500"));
   }
 
+  function getSearchResults(searchValue) {
+    let searchResults = movies.filter((movie) => {
+      return movie.title.toLowerCase().includes(searchValue)
+    });
+    if(searchResults.length > 0 ){
+      setSearchResults(searchResults)
+      navigate(`/search/${searchValue}`)
+    }else{
+      navigate(`/search/noresults/${searchValue}`)
+    }
+  }
+
+  function getSearchInput(searchInput) {
+    if (searchInput.target.value) {
+      getSearchResults(searchInput.target.value.toLowerCase());
+    } else {
+      navigate("/");
+    }
+  }
+
   useEffect(() => {
     getMovies();
   }, []);
@@ -31,11 +52,13 @@ function App() {
   return (
     <>
       <div>
-        <Nav />
+        <Nav getSearchInput={getSearchInput} />
         <Routes>
           <Route path="/" element={<Main movieData={movies} />} />
-          <Route path="/:id" element={<Desc/>} />
+          <Route path="/:id" element={<Desc />} />
           <Route path="/error/:response" element={<Error />} />
+          <Route path="/search/:input" element={<Main movieData={search} />} />
+          <Route path="/search/noresults/:input" element={<p>No Results Found</p>}/>
         </Routes>
       </div>
     </>
@@ -43,3 +66,6 @@ function App() {
 }
 
 export default App;
+/*
+           <Route path="/search/:input" element = {<Main movieData={}/>} />
+*/
