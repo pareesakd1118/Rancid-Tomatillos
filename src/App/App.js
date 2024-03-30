@@ -10,6 +10,8 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearchResults] = useState([]);
+  const [sort, setSort] = useState([]);
+
   const navigate = useNavigate();
 
   function getMovies() {
@@ -27,19 +29,40 @@ function App() {
 
   function getSearchResults(searchValue) {
     let searchResults = movies.filter((movie) => {
-      return movie.title.toLowerCase().includes(searchValue)
+      return movie.title.toLowerCase().includes(searchValue);
     });
-    if(searchResults.length > 0 ){
-      setSearchResults(searchResults)
-      navigate(`/search/${searchValue}`)
-    }else{
-      navigate(`/search/noresults/${searchValue}`)
+    if (searchResults.length > 0) {
+      setSearchResults(searchResults);
+      navigate(`/search/${searchValue}`);
+    } else {
+      navigate(`/search/noresults/${searchValue}`);
     }
   }
 
   function getSearchInput(searchInput) {
     if (searchInput.target.value) {
       getSearchResults(searchInput.target.value.toLowerCase());
+    } else {
+      navigate("/");
+    }
+  }
+
+  function sortMovies(event) {
+    let value = event.target.value;
+    let sortedMovies
+
+    if (value === "highToLow") {
+      sortedMovies = movies.toSorted((a, b) => {
+        return b.average_rating - a.average_rating;
+      });
+      navigate(`/filter/${value}`);
+      setSort(sortedMovies);
+    } else if (value === "lowToHigh") {
+      sortedMovies = movies.toSorted((a, b) => {
+        return a.average_rating - b.average_rating;
+      });
+      setSort(sortedMovies);
+      navigate(`/filter/${value}`);
     } else {
       navigate("/");
     }
@@ -52,13 +75,17 @@ function App() {
   return (
     <>
       <div>
-        <Nav getSearchInput={getSearchInput} />
+        <Nav getSearchInput={getSearchInput} sortMovies={sortMovies}/>
         <Routes>
           <Route path="/" element={<Main movieData={movies} />} />
           <Route path="/:id" element={<Desc />} />
           <Route path="/error/:response" element={<Error />} />
           <Route path="/search/:input" element={<Main movieData={search} />} />
-          <Route path="/search/noresults/:input" element={<p>No Results Found</p>}/>
+          <Route
+            path="/search/noresults/:input"
+            element={<p>No movies match your query 😢</p>}
+          />
+          <Route path="/filter/:filter" element={<Main movieData={sort} />} />
         </Routes>
       </div>
     </>
@@ -66,6 +93,4 @@ function App() {
 }
 
 export default App;
-/*
-           <Route path="/search/:input" element = {<Main movieData={}/>} />
-*/
+
