@@ -83,7 +83,7 @@ function App() {
           <Route path="/search/:input" element={<Main movieData={search} />} />
           <Route
             path="/search/noresults/:input"
-            element={<p>No movies match your query 😢</p>}
+            element={<h3 className="no-match">No movies match your query 😢</h3>}
           />
           <Route path="/filter/:filter" element={<Main movieData={sort} />} />
         </Routes>
