@@ -29,11 +29,11 @@ describe("The user can use the site properly ", () => {
     }).visit("http://localhost:3000/");
   });
 
-  it("displays movies on the main page", () => {
+  it("Should display movies on the main page", () => {
     cy.get(".movie").should("have.length.greaterThan", 0);
   });
 
-  it("shows movie details when a movie is clicked", () => {
+  it("Should show movie details when a movie is clicked", () => {
     cy.get(".movie").first().click();
     cy.intercept(
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270",
@@ -63,7 +63,7 @@ describe("The user can use the site properly ", () => {
     cy.get(".movieDescDisplay").should("be.visible")
   });
 
-  it("shows movie details when a movie is clicked", () => {
+  it("Should show movie details when a movie is clicked", () => {
     cy.intercept(
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies/724495",
       {
@@ -93,7 +93,7 @@ describe("The user can use the site properly ", () => {
     cy.url().should("include", "724495");
   });
   
-  it("returns to the main page when the 'Back' button is clicked", () => {
+  it("Should returns to the main page when the 'Back' button is clicked", () => {
     cy.intercept(
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies/436270",
       {
@@ -126,7 +126,7 @@ describe("The user can use the site properly ", () => {
     cy.get(".movie").should("be.visible");
   });
 
-  it("displays an error message if fetching movies fails", () => {
+  it("Should display an error message if fetching movies fails", () => {
     cy.intercept(
       "GET",
       "https://rancid-tomatillos.herokuapp.com/api/v2/movies",
@@ -139,7 +139,7 @@ describe("The user can use the site properly ", () => {
     cy.get(".error").should("be.visible");
   });
 
-  it("displays an error message if fetching single movie description fails", () => {
+  it("Should display an error message if fetching single movie description fails", () => {
     cy.get(".movie").first().click();
     cy.intercept(
       "GET",
@@ -152,7 +152,7 @@ describe("The user can use the site properly ", () => {
     cy.get(".error").should("be.visible")
   })
 
-  it("displays an error message if fetching single movie description fails", () => {
+  it("Should display an error message if fetching single movie description fails", () => {
     cy.get(".movie").last().click()
     cy.intercept(
       "GET",
@@ -164,16 +164,33 @@ describe("The user can use the site properly ", () => {
     )
     cy.get(".error").should("be.visible")
   })
-  it("searches for results based on input", () => {
+
+  it("Should search for results based on input", () => {
     cy.get("input").type("black")
     cy.get("#436270").should("be.visible");
     cy.url().should("include","black")
   })
+
   it("Should return you home if you click on the title", () => {
     cy.get("input").type("black")
     cy.get("#436270").should("be.visible");
     cy.url().should("include","black")
     cy.get("h1").click()
     cy.get(".movie").should("have.length.greaterThan", 1)
+  })
+
+  it("Should sort movies by rating from highest to lowest", () => {
+    cy.get("#filter").select("highToLow")
+    cy.get(".movie").first().should("have.attr", "id", 724495)
+  })
+
+  it("Should sort movies by rating from lowest to highest", () => {
+    cy.get("#filter").select("lowToHigh")
+    cy.get(".movie").first().should("have.attr", "id", 436270)
+  })
+
+  it("Should remove sort filter and return to original order", () => {
+    cy.get("#filter").select("none")
+    cy.get(".movie").first().should("have.attr", "id", 436270)
   })
 });
