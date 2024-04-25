@@ -1,4 +1,4 @@
-# <p align="center">Rancid Tomatillos</p>
+# <p align="center">Rancid Tomatillos 🍅</p>
 
 <p align="center">Rancid Tomatillos, much like Netflix or Hulu, is a movie directory in which users are brought to a main dashboard with posters of a set of movies. Upon clicking a specific movie poster, the user is taken to another page with additional information on each movie (release date, synopsis, rating, genre, and more). Users may also filter movies from either lowest to highest rating, or highest to lowest rating and use the search bar to search for a specific movie by title, the search bar works on change such that the movies are filtered instantly without having to press a search button.</p>
 
