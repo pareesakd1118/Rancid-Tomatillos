@@ -36,7 +36,7 @@ https://github.com/EthanDuvall/Rancid-Tomatillos/assets/147420318/17dd6b7c-f1b4-
 </div>
 
 ## Installation Instructions:
-- Visit Rancid Tomatillos [here](https://shes-a-scientist.vercel.app/), OR
+- Visit Rancid Tomatillos [here](https://rancid-tomatillos-umber.vercel.app/), OR
 1. clone the frontend repo to your machine
     
     ```
