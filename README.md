@@ -75,7 +75,6 @@ https://github.com/EthanDuvall/Rancid-Tomatillos/assets/147420318/17dd6b7c-f1b4-
   ```
   - Add a favoriting feature to save favorite movies.
   - Add a filter feature to filter by genre, and organize movies by genre.
-
   ```
 
 
