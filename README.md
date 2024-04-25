@@ -5,7 +5,7 @@
 ### <p align="center">Contributors</p>
 <div align="center">
 
- [Pareesa Kamgar-Dayhoff](https://github.com/pareesakd1118) [Ethan Duvall](https://github.com/EthanDuvall)
+ [Pareesa Kamgar-Dayhoff](https://github.com/pareesakd1118) | [Ethan Duvall](https://github.com/EthanDuvall)
 
 </div>
 
